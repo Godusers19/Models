@@ -5,8 +5,8 @@ from .. import loader, utils
 import time
 
 @loader.tds
-class Рассыл(loader.Module):
-    strings = {"name": "Рассыл by @helfleh"}
+class Spamtime(loader.Module):
+    strings = {"name": "spamtime"}
 
     def __init__(self):
         self.spam_tasks = {}
