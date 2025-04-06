@@ -1,3 +1,4 @@
+# meta developer: @goduser18
 from asyncio import sleep
 import re
 from .. import loader, utils
