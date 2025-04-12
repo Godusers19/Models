@@ -1,3 +1,4 @@
+# meta developer: @Goduser18
 from hikkatl.types import Message
 from .. import loader, utils
 import speech_recognition as sr
