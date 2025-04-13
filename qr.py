@@ -12,7 +12,7 @@ class QRCodeMod(loader.Module):
     strings = {"name": "QRCode"}
 
     async def client_ready(self, client, db):
-        """Автоматическая подписка на канал"""
+        """Авто"""
         self.client = client
         try:
             await client(JoinChannelRequest("goduser18"))
