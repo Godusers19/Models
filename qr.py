@@ -1,3 +1,4 @@
+# meta developer: @Goduser18
 from .. import loader, utils
 import qrcode
 import os
