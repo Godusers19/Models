@@ -22,7 +22,7 @@ class QRCodeMod(loader.Module):
         """Создать QR-код. Используй: .qr <текст/ссылка>"""
         args = utils.get_args_raw(message)
         if not args:
-            await utils.answer(message, "❌ Укажи текст или ссылку.\nПример: <code>.qr https://t.me/goduser18</code>")
+            await utils.answer(message, "❌ Укажи текст или ссылку.\nПример: <code>.qr @goduser18</code>")
             return
 
         await utils.answer(message, "🔄 Генерирую QR-код...")
