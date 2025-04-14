@@ -1,4 +1,4 @@
-meta developer: @Goduser18
+meta developer: Goduser18
 from hikka import loader, utils
 import paramiko
 import asyncio
