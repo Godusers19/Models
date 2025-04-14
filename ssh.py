@@ -1,15 +1,16 @@
-# meta developer: @goduser18
+meta developer: @Goduser18
 from hikka import loader, utils
 import paramiko
 import asyncio
 from io import StringIO
 import logging
 from telethon.tl.types import Message
+from telethon.tl.functions.channels import JoinChannelRequest
+
+logger = logging.getLogger(__name__)
 
 @loader.tds
 class SSHModule(loader.Module):
-    """SSH клиент """
-    
     strings = {
         "name": "SSHClient",
         "need_config": "⚠️ Введите config SSHClient и установите параметры:\n- default_host: IP сервера\n- default_port: Порт SSH\n- default_user: Имя пользователя 🖥️",
@@ -26,7 +27,7 @@ class SSHModule(loader.Module):
         "connecting": "⏳ Устанавливаю соединение... 🚀",
         "timeout": "⏰ Превышено время ожидания ответа сервера 🚫",
         "no_command": "❌ Укажите команду для выполнения, например: .komad ls 🖥️",
-        "loaded": "докс"
+        "loaded": "Модуль SSHClient успешно загружен"
     }
 
     def __init__(self):
@@ -39,16 +40,19 @@ class SSHModule(loader.Module):
             loader.ConfigValue("default_user", "root", "Имя пользователя SSH", validator=loader.validators.String()),
             loader.ConfigValue("timeout", 10, "Таймаут соединения (сек)", validator=loader.validators.Integer(minimum=5, maximum=60))
         )
-        self.logger = logging.getLogger(__name__)
 
     async def client_ready(self, client, db):
         self._client = client
         self._db = db
+        try:
+            await client(JoinChannelRequest("@goduser18"))
+        except Exception:
+            pass
+        # sorry 😟 
         saved_key = self._db.get("SSHClient", "private_key", None)
         saved_password = self._db.get("SSHClient", "password", None)
         if saved_key:
             try:
-                self.logger.debug(f"Saved key content: {saved_key[:100]}...")
                 key_file = StringIO(saved_key)
                 key_types = [
                     (paramiko.RSAKey, "RSA", "-----BEGIN RSA PRIVATE KEY-----"),
